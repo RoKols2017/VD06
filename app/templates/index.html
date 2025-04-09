@@ -8,24 +8,43 @@
 <body class="bg-light">
 <div class="container mt-5">
     <h1 class="mb-4">Форма анкеты</h1>
+
     <form method="POST" class="border p-4 bg-white shadow-sm rounded">
+        {{ form.hidden_tag() }}
+
         <div class="mb-3">
-            <label for="name" class="form-label">Имя</label>
-            <input type="text" class="form-control" id="name" name="name" placeholder="Введите имя" required>
+            {{ form.name.label(class="form-label") }}
+            {{ form.name(class="form-control") }}
+            {% for error in form.name.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
         </div>
+
         <div class="mb-3">
-            <label for="city" class="form-label">Город</label>
-            <input type="text" class="form-control" id="city" name="city" placeholder="Ваш город" required>
+            {{ form.city.label(class="form-label") }}
+            {{ form.city(class="form-control") }}
+            {% for error in form.city.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
         </div>
+
         <div class="mb-3">
-            <label for="hobby" class="form-label">Хобби</label>
-            <input type="text" class="form-control" id="hobby" name="hobby" placeholder="Ваше хобби" required>
+            {{ form.hobby.label(class="form-label") }}
+            {{ form.hobby(class="form-control") }}
+            {% for error in form.hobby.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
         </div>
+
         <div class="mb-3">
-            <label for="age" class="form-label">Возраст</label>
-            <input type="number" class="form-control" id="age" name="age" placeholder="Возраст" required min="0">
+            {{ form.age.label(class="form-label") }}
+            {{ form.age(class="form-control") }}
+            {% for error in form.age.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
         </div>
-        <button type="submit" class="btn btn-primary">Отправить</button>
+
+        {{ form.submit(class="btn btn-primary") }}
     </form>
 
     {% if user_data %}
