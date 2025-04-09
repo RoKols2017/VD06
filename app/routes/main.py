@@ -1,8 +1,8 @@
-from flask import Flask, render_template, request
+from flask import Blueprint, render_template, request
 
-app = Flask(__name__)
+bp = Blueprint("main", __name__)
 
-@app.route("/", methods=["GET", "POST"])
+@bp.route("/", methods=["GET", "POST"])
 def index():
     user_data = None
     if request.method == "POST":
@@ -13,6 +13,3 @@ def index():
             "age": request.form.get("age")
         }
     return render_template("index.html", user_data=user_data)
-
-if __name__ == "__main__":
-    app.run(debug=True)
